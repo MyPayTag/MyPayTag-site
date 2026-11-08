@@ -21,3 +21,8 @@ Verified English-first requests with Swedish as a lower preference,
 Swedish-first requests, and explicit preference cookies. Chromium switched
 between English and Swedish and restored both choices after reload.
 Translation validation, lint, and typecheck passed.
+
+The authenticated staging smoke exposed a receive-path draft reset. The typed
+translation hook returned a new function on every render, causing effects in
+Settings and History to refetch continuously. Stabilized the function between
+translation changes so reordering can remain in local state until save.
