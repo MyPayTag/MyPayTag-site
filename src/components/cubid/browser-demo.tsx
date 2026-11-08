@@ -19,6 +19,7 @@ import {
   LoaderCircle,
   LogIn,
 } from "lucide-react";
+import { cubidStagingIssuer, fetchStagingCubidOidc } from "@/lib/cubid/staging-oidc";
 
 const publicConfig = {
   clearPassPageId: process.env.NEXT_PUBLIC_CUBID_CLEARPASS_PAGE_ID ?? "",
@@ -71,6 +72,7 @@ export function BrowserDemo() {
   return (
     <CubidAuthProvider
       autoUserInfo
+      fetch={publicConfig.issuer === cubidStagingIssuer ? fetchStagingCubidOidc : undefined}
       clientId={publicConfig.clientId}
       issuer={publicConfig.issuer}
       postLogoutRedirectUri={
