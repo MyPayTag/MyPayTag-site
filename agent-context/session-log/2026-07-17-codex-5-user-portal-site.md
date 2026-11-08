@@ -26,3 +26,8 @@ The authenticated staging smoke exposed a receive-path draft reset. The typed
 translation hook returned a new function on every render, causing effects in
 Settings and History to refetch continuously. Stabilized the function between
 translation changes so reordering can remain in local state until save.
+
+The first memoization alone did not stop the staging refetch loop. Removed
+translation from the request effects' dependencies entirely. The effects
+now run for a changed session token or history filter and read current
+translations only when making or reporting a request.

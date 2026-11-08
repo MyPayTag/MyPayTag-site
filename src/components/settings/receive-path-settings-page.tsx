@@ -2,7 +2,7 @@
 
 import { useOptionalCubidAuth } from "@cubid/auth-react";
 import { AlertTriangle, ArrowDown, ArrowUp, LoaderCircle, Save } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useState } from "react";
 
 import { SignedInOnly } from "@/components/cubid/signed-in-only";
 import { useTypedTranslation } from "@/lib/i18n/use-typed-translation";
@@ -42,10 +42,15 @@ function ReceivePathSettingsPanel() {
   const [groups, setGroups] = useState<PortalPreferenceGroup[]>([]);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
+  const fetchData = useEffectEvent((token: string) => fetchPortalPreferences(token, t));
+  const loadError = useEffectEvent((error: unknown) =>
+    error instanceof Error ? error.message : t("errorGeneric")
+  );
+
   useEffect(() => {
     if (!accessToken) return;
     let cancelled = false;
-    fetchPortalPreferences(accessToken, t)
+    fetchData(accessToken)
       .then((data) => {
         if (cancelled) return;
         setGroups(data.groups);
@@ -55,13 +60,13 @@ function ReceivePathSettingsPanel() {
         if (cancelled) return;
         setState({
           status: "error",
-          message: error instanceof Error ? error.message : t("errorGeneric"),
+          message: loadError(error),
         });
       });
     return () => {
       cancelled = true;
     };
-  }, [accessToken, t]);
+  }, [accessToken]);
 
   const hasGroups = groups.length > 0;
 

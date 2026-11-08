@@ -10,7 +10,7 @@ import {
   ReceiptText,
 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useEffectEvent, useMemo, useState } from "react";
 
 import { SignedInOnly } from "@/components/cubid/signed-in-only";
 import { BackButton } from "@/components/navigation/back-button";
@@ -83,10 +83,15 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
   const accessToken = auth?.session?.accessToken;
   const [state, setState] = useState<LoadState>({ status: "idle" });
 
+  const fetchData = useEffectEvent((token: string) => fetchPortalHistory(token, type, t));
+  const loadError = useEffectEvent((error: unknown) =>
+    error instanceof Error ? error.message : t("errorGeneric")
+  );
+
   useEffect(() => {
     if (!accessToken) return;
     let cancelled = false;
-    fetchPortalHistory(accessToken, type, t)
+    fetchData(accessToken)
       .then((data) => {
         if (cancelled) return;
         setState(data.items.length > 0 ? { status: "ready", data } : { status: "empty" });
@@ -95,14 +100,14 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
         if (cancelled) return;
         setState({
           status: "error",
-          message: error instanceof Error ? error.message : t("errorGeneric"),
+          message: loadError(error),
         });
       });
 
     return () => {
       cancelled = true;
     };
-  }, [accessToken, type, t]);
+  }, [accessToken, type]);
 
   const groups = useMemo(
     () =>
