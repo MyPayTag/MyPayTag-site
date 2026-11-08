@@ -31,3 +31,6 @@ The first memoization alone did not stop the staging refetch loop. Removed
 translation from the request effects' dependencies entirely. The effects
 now run for a changed session token or history filter and read current
 translations only when making or reporting a request.
+
+Kept the paying app display label after saving a priority. The write result
+has the same app ID but does not embed its display name.

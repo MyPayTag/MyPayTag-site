@@ -77,7 +77,9 @@ function ReceivePathSettingsPanel() {
     try {
       const updated = await updatePortalPreferenceGroup(accessToken, group, t);
       const nextGroups = groups.map((candidate) =>
-        groupKey(candidate) === groupKey(group) ? updated : candidate
+        groupKey(candidate) === groupKey(group)
+          ? { ...updated, payingDapp: candidate.payingDapp }
+          : candidate
       );
       setGroups(nextGroups);
       setSaveMessage(t("saveSuccess"));
