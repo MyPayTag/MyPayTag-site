@@ -46,9 +46,7 @@ export function LocaleFixtureControl() {
       </label>
 
       <p className="mt-3 rounded-md border border-[#d9dfd1] bg-[#fbfcf8] px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#586250]">
-        {locale === "sv"
-          ? tSettings("localeDetectedSweden")
-          : tSettings("localeDefaultEnglish")}
+        {tSettings(localeLabels[locale])}
       </p>
     </section>
   );

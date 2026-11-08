@@ -64,10 +64,12 @@ or normal Cubid transaction-signing examples from those projects.
 Cubid dapp API keys, service-role keys, and recovery bundle material must stay
 out of browser env vars and client bundles.
 
-`/actions/*`, `/history`, and `/developer` are protected by the temporary mock
-header session until SIWC is connected. The header supports logging in as a user
-or as a developer; developer mode exposes mock API provisioning, key rotation,
-team invites, and recent app history.
+`/actions/*`, `/history`, and `/developer` are protected by Login with Cubid /
+OIDC when the browser-safe Cubid config is present. Missing Cubid config shows a
+safe setup state instead of silently falling back to a production mock session.
+Developer tooling still uses local fixture data for API provisioning, key
+rotation, team invites, and recent app history until those backend surfaces are
+connected.
 
 `/api-docs`, `/reference`, `/blog`, and the homepage are public
 developer-facing surfaces. They should describe only public protocol behavior
@@ -138,6 +140,13 @@ playground examples call the backend when `MYPAYTAG_RESOLVER_BASE_URL` is set;
 they return local development fixtures only when
 `MYPAYTAG_PLAYGROUND_MOCK_MODE=true`. Broad solver fanout is a Phase 2 fixture
 and requires `MYPAYTAG_PLAYGROUND_PHASE2_DEMO_MODE=true`.
+
+Authenticated portal settings and history also use server-only
+`MYPAYTAG_RESOLVER_BASE_URL` through `/api/portal/preferences` and
+`/api/portal/history`. The browser sends the Cubid bearer session to the site
+API route, and the site forwards it to the backend `portal-preferences` or
+`portal-history` function without exposing backend service config in client
+bundles.
 
 ## Cubid Console Setup
 

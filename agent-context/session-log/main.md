@@ -1,6 +1,42 @@
 # Main Session Log
 
 agent: Codex
+branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#10 PR smoke fix
+summary: Addressed protected-preview smoke feedback by surfacing Cubid sign-in launch failures in the shared session control instead of silently returning to the logged-out state.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets successfully.
+follow-ups: Re-smoke the PR preview in Chrome after Vercel redeploys, then merge only after PR review and green checks.
+
+---
+
+agent: Codex
+branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#9
+summary: Implemented MyPayTag-site#9 by replacing the static /history fixture flow with a Cubid-authenticated backend history fetch, a server-side /api/portal/history proxy, typed portal history contracts, grouped question/answer/quote/selected-quote/intent/receipt rendering, exact quote details, pending/unavailable receipt handling, and localized history copy.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Restarted the stale local next start process after it held old Turbopack chunks from the previous build, then confirmed /history returned 200 and captured production-server Playwright screenshots for the missing-config state at desktop and mobile widths under output/playwright/site-9-*.png. Real authenticated history/filter/detail smoke requires real Cubid OIDC config plus a deployed backend portal-history API and is deferred to the staging env/smoke issues.
+follow-ups: Promote Site#9 and Site#8 after validation comments, then continue the sprint dependency tree with staging/Vercel/Supabase env and smoke tasks.
+
+---
+
+agent: Codex
+branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#11
+summary: Implemented MyPayTag-site#11 by adding a protected /settings receive-path priority surface, a server-side /api/portal/preferences proxy to the backend portal-preferences function, typed portal preference contracts, settings navigation, and localized settings copy for loading, empty, failure, reorder, and save states.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Captured production-server Playwright screenshots for /settings missing-config state at desktop and mobile widths under output/playwright/site-11-*.png. Real view/reorder/save browser smoke requires real Cubid OIDC config plus a deployed backend portal-preferences API and is deferred to the staging env/smoke issues.
+follow-ups: Implement backend-backed history UI in Site#9, then run staged real-auth smoke after env is configured.
+
+---
+
+agent: Codex
+branch: codex/5-user-portal-site
+head: pending commit for MyPayTag-site#10
+summary: Replaced production protected-route gating and header session controls with real Cubid/OIDC auth state, removed the mock localStorage session provider from app layout and source, localized Cubid missing-config/checking/callback states, and kept developer tooling behind Cubid sign-in while still using local fixture data for unfinished developer backend surfaces.
+validation: Ran pnpm check:i18n, pnpm typecheck, pnpm lint, pnpm build, and pnpm scan:browser-secrets. Captured production-server Playwright screenshots for /history and /auth/callback missing-config states at desktop and mobile widths under output/playwright/site-10-*.png.
+follow-ups: Implement backend-backed receive-path settings and history UI in Site#11 and Site#9.
+
+---
+
+agent: Codex
 branch: main
 head: 91003ef
 summary: Added and README-linked a public hosted user-actions architecture doc for authorization, setup, and route-selection pages while keeping private resolver implementation out of the site boundary.

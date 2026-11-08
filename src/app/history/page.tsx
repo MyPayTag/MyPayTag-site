@@ -8,13 +8,14 @@ interface HistoryPageProps {
   searchParams: Promise<{
     type?: string;
     view?: string;
+    cursor?: string;
   }>;
 }
 
 export const metadata = {
   title: "Incoming Transaction History",
   description:
-    "Browser-safe incoming transaction history grouped by paying app, PayToDapp, token, or chain.",
+    "Backend-backed incoming transaction history grouped by paying app, PayToDapp, token, or chain.",
 };
 
 export default async function HistoryPage({ searchParams }: HistoryPageProps) {
@@ -22,7 +23,8 @@ export default async function HistoryPage({ searchParams }: HistoryPageProps) {
   const type = normalizeType(params.type);
   const view = normalizeFilter(params.view);
 
-  return <ProtectedHistoryPage type={type} view={view} />;
+  const cursor = typeof params.cursor === "string" ? params.cursor : undefined;
+  return <ProtectedHistoryPage cursor={cursor} type={type} view={view} />;
 }
 
 function normalizeFilter(value: string | undefined): IncomingHistoryFilter {
@@ -39,7 +41,13 @@ function normalizeFilter(value: string | undefined): IncomingHistoryFilter {
 }
 
 function normalizeType(value: string | undefined): IncomingHistoryType | undefined {
-  if (value === "queries" || value === "intents" || value === "transactions") {
+  if (
+    value === "questions" ||
+    value === "answers" ||
+    value === "quotes" ||
+    value === "intents" ||
+    value === "receipts"
+  ) {
     return value;
   }
 

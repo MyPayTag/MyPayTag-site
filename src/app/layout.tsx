@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
 
-import { MockSessionProvider } from "@/components/auth/mock-session-provider";
 import { AppAuthProvider } from "@/components/cubid/app-auth-provider";
 import { I18nProvider } from "@/components/i18n/i18n-provider";
 import { SiteHeader } from "@/components/navigation/site-header";
@@ -41,10 +40,8 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col">
         <I18nProvider initialLocale={initialLocale}>
           <AppAuthProvider>
-            <MockSessionProvider>
-              <SiteHeader />
-              {children}
-            </MockSessionProvider>
+            <SiteHeader />
+            {children}
           </AppAuthProvider>
         </I18nProvider>
       </body>

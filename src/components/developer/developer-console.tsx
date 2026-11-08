@@ -12,7 +12,6 @@ import {
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 
-import { useMockSession } from "@/components/auth/mock-session-provider";
 import { SignedInOnly } from "@/components/cubid/signed-in-only";
 import { LocaleFixtureControl } from "@/components/i18n/locale-fixture-control";
 
@@ -44,7 +43,6 @@ const appHistory = [
 ];
 
 export function DeveloperConsole() {
-  const { session } = useMockSession();
   const [apiKeyVersion, setApiKeyVersion] = useState(1);
   const [provisionedApp, setProvisionedApp] = useState<ProvisionedApp | null>(null);
   const [marketingName, setMarketingName] = useState("SmarTrust Wallet");
@@ -101,20 +99,9 @@ export function DeveloperConsole() {
 
   return (
     <SignedInOnly
-      description="Developer tools are available after signing in as a developer from the header."
-      title="Sign in as a developer"
+      description="Developer tools are available after Cubid sign-in."
+      title="Sign in with Cubid"
     >
-      {session?.credential !== "developer" ? (
-        <main className="min-h-screen bg-[#f7f8f4] px-6 py-12 text-[#151713]">
-          <section className="mx-auto max-w-lg rounded-lg border border-[#d9dfd1] bg-white p-6 shadow-sm">
-            <h1 className="text-2xl font-semibold">Developer login required</h1>
-            <p className="mt-3 text-sm leading-6 text-[#586250]">
-              Use the header menu to sign out, then log in as a developer to
-              access API keys, developer invites, and app history.
-            </p>
-          </section>
-        </main>
-      ) : (
       <main className="min-h-screen bg-[#f7f8f4] text-[#151713]">
         <section className="border-b border-[#d9dfd1] bg-white">
           <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
@@ -125,9 +112,8 @@ export function DeveloperConsole() {
               API access for PayingDapps and PayToDapps
             </h1>
             <p className="mt-4 max-w-3xl text-base leading-7 text-[#586250]">
-              Mock developer account controls for app metadata, API provisioning,
-              key rotation, team access, and recent app history until SIWC is
-              connected.
+              Developer account controls for app metadata, API provisioning,
+              key rotation, team access, and recent app history.
             </p>
           </div>
         </section>
@@ -312,7 +298,6 @@ export function DeveloperConsole() {
           </div>
         </section>
       </main>
-      )}
     </SignedInOnly>
   );
 }
