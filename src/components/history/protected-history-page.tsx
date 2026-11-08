@@ -54,17 +54,17 @@ const typeLabels: Array<{
 type LoadState =
   | { status: "idle" | "loading" }
   | { status: "ready"; data: PortalHistoryResponse }
-  | { status: "empty" }
   | { status: "error"; message: string };
 
 type HistoryT = ReturnType<typeof useTypedTranslation<"history">>["t"];
 
 interface ProtectedHistoryPageProps {
+  cursor?: string;
   type?: PortalHistoryType;
   view: PortalHistoryFilter;
 }
 
-export function ProtectedHistoryPage({ type, view }: ProtectedHistoryPageProps) {
+export function ProtectedHistoryPage({ cursor, type, view }: ProtectedHistoryPageProps) {
   const { t } = useTypedTranslation("history");
 
   return (
@@ -72,18 +72,18 @@ export function ProtectedHistoryPage({ type, view }: ProtectedHistoryPageProps) 
       description={t("signInDescription")}
       title={t("signInTitle")}
     >
-      <HistoryPanel type={type} view={view} />
+      <HistoryPanel key={cursor ?? ""} cursor={cursor} type={type} view={view} />
     </SignedInOnly>
   );
 }
 
-function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
+function HistoryPanel({ cursor, type, view }: ProtectedHistoryPageProps) {
   const auth = useOptionalCubidAuth();
   const { t } = useTypedTranslation("history");
   const accessToken = auth?.session?.accessToken;
   const [state, setState] = useState<LoadState>({ status: "idle" });
 
-  const fetchData = useEffectEvent((token: string) => fetchPortalHistory(token, type, t));
+  const fetchData = useEffectEvent((token: string) => fetchPortalHistory(token, cursor, t));
   const loadError = useEffectEvent((error: unknown) =>
     error instanceof Error ? error.message : t("errorGeneric")
   );
@@ -94,7 +94,7 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
     fetchData(accessToken)
       .then((data) => {
         if (cancelled) return;
-        setState(data.items.length > 0 ? { status: "ready", data } : { status: "empty" });
+        setState({ status: "ready", data });
       })
       .catch((error) => {
         if (cancelled) return;
@@ -107,14 +107,14 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
     return () => {
       cancelled = true;
     };
-  }, [accessToken, type]);
+  }, [accessToken, cursor]);
 
   const groups = useMemo(
     () =>
       state.status === "ready"
-        ? groupPortalHistoryItems(state.data.items, view)
+        ? groupPortalHistoryItems(state.data.items, view, type)
         : new Map<string, PortalHistoryItem[]>(),
-    [state, view],
+    [state, view, type],
   );
 
   return (
@@ -154,7 +154,7 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
                         ? "border-[#176b46] bg-[#176b46] text-white"
                         : "border-[#cbd4c3] bg-white text-[#2c3429] hover:bg-[#f1f4ec]"
                     }`}
-                    href={historyHref(filter.id, type)}
+                    href={historyHref(filter.id, type, cursor)}
                     key={filter.id}
                   >
                     {t(filter.key)}
@@ -189,7 +189,7 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
         {state.status === "idle" || state.status === "loading" ? (
           <StatusPanel loading message={t("loadingDescription")} title={t("loadingTitle")} />
         ) : null}
-        {state.status === "empty" ? (
+        {state.status === "ready" && groups.size === 0 ? (
           <StatusPanel message={t("emptyDescription")} title={t("emptyTitle")} />
         ) : null}
         {state.status === "error" ? (
@@ -208,6 +208,14 @@ function HistoryPanel({ type, view }: ProtectedHistoryPageProps) {
             </div>
           </section>
         ))}
+        {(cursor || (state.status === "ready" && state.data.nextCursor)) ? (
+          <div className="flex flex-wrap gap-4 text-sm font-semibold text-[#176b46]">
+            {cursor && <Link href={historyHref(view, type)}>{t("latestActivity")}</Link>}
+            {state.status === "ready" && state.data.nextCursor && (
+              <Link href={historyHref(view, type, state.data.nextCursor)}>{t("olderActivity")}</Link>
+            )}
+          </div>
+        ) : null}
       </section>
     </main>
   );
@@ -384,11 +392,11 @@ function StatusBadge({ status }: { status: string }) {
 
 async function fetchPortalHistory(
   accessToken: string,
-  type: PortalHistoryType | undefined,
+  cursor: string | undefined,
   t: HistoryT,
 ): Promise<PortalHistoryResponse> {
   const params = new URLSearchParams();
-  if (type) params.set("type", type);
+  if (cursor) params.set("cursor", cursor);
   const response = await fetch(`/api/portal/history${params.size ? `?${params.toString()}` : ""}`, {
     headers: { authorization: `Bearer ${accessToken}` },
     cache: "no-store",
@@ -403,9 +411,10 @@ function portalErrorMessage(status: number, t: HistoryT): string {
   return t("errorGeneric");
 }
 
-function historyHref(view: PortalHistoryFilter, type?: PortalHistoryType) {
+function historyHref(view: PortalHistoryFilter, type?: PortalHistoryType, cursor?: string) {
   const params = new URLSearchParams({ view });
   if (type) params.set("type", type);
+  if (cursor) params.set("cursor", cursor);
   return `/history?${params.toString()}`;
 }
 

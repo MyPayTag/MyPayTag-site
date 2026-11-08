@@ -122,6 +122,7 @@ export interface PortalDappSummary {
 export function groupPortalHistoryItems(
   items: PortalHistoryItem[],
   filter: PortalHistoryFilter,
+  type?: PortalHistoryType,
 ): Map<string, PortalHistoryItem[]> {
   const questions = new Map(
     items
@@ -129,7 +130,15 @@ export function groupPortalHistoryItems(
       .map((item) => [item.id, item]),
   );
 
-  return Map.groupBy(items, (item) => historyGroupLabel(item, filter, questions));
+  const kinds: Record<PortalHistoryType, PortalHistoryItem["kind"][]> = {
+    questions: ["question"],
+    answers: ["answer"],
+    quotes: ["quote", "selected_quote"],
+    intents: ["payment_intent"],
+    receipts: ["receipt"],
+  };
+  const visibleItems = type ? items.filter((item) => kinds[type].includes(item.kind)) : items;
+  return Map.groupBy(visibleItems, (item) => historyGroupLabel(item, filter, questions));
 }
 
 function historyGroupLabel(

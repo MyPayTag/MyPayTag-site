@@ -8,6 +8,7 @@ interface HistoryPageProps {
   searchParams: Promise<{
     type?: string;
     view?: string;
+    cursor?: string;
   }>;
 }
 
@@ -22,7 +23,8 @@ export default async function HistoryPage({ searchParams }: HistoryPageProps) {
   const type = normalizeType(params.type);
   const view = normalizeFilter(params.view);
 
-  return <ProtectedHistoryPage type={type} view={view} />;
+  const cursor = typeof params.cursor === "string" ? params.cursor : undefined;
+  return <ProtectedHistoryPage cursor={cursor} type={type} view={view} />;
 }
 
 function normalizeFilter(value: string | undefined): IncomingHistoryFilter {

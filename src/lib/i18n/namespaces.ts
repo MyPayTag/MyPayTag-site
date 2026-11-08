@@ -121,6 +121,8 @@ export const translationKeys = {
     "typeReceipts",
     "typeAll",
     "loadingTitle",
+    "latestActivity",
+    "olderActivity",
     "loadingDescription",
     "emptyTitle",
     "emptyDescription",

@@ -126,6 +126,8 @@ const en = {
     typeReceipts: "Receipts",
     typeAll: "All",
     loadingTitle: "Loading history",
+    latestActivity: "Latest activity",
+    olderActivity: "Older activity",
     loadingDescription: "Reading backend-backed transaction history.",
     emptyTitle: "No history yet",
     emptyDescription:
@@ -367,6 +369,8 @@ const sv = {
     typeReceipts: "Kvitton",
     typeAll: "Alla",
     loadingTitle: "Laddar historik",
+    latestActivity: "Senaste aktivitet",
+    olderActivity: "Äldre aktivitet",
     loadingDescription: "Läser backendbaserad transaktionshistorik.",
     emptyTitle: "Ingen historik än",
     emptyDescription:

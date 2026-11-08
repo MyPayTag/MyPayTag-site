@@ -912,7 +912,7 @@
                 "method": "PATCH",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"state\": 4483.936129829484\n}",
+                  "raw": "{\n  \"state\": \"<boolean>\"\n}",
                   "options": {
                     "raw": {
                       "headerFamily": "json",
@@ -969,7 +969,7 @@
                     "method": "PATCH",
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"state\": 4483.936129829484\n}",
+                      "raw": "{\n  \"state\": \"<boolean>\"\n}",
                       "options": {
                         "raw": {
                           "headerFamily": "json",
@@ -1036,7 +1036,7 @@
                     "method": "PATCH",
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"state\": 4483.936129829484\n}",
+                      "raw": "{\n  \"state\": \"<boolean>\"\n}",
                       "options": {
                         "raw": {
                           "headerFamily": "json",
@@ -1103,7 +1103,7 @@
                     "method": "PATCH",
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"state\": 4483.936129829484\n}",
+                      "raw": "{\n  \"state\": \"<boolean>\"\n}",
                       "options": {
                         "raw": {
                           "headerFamily": "json",
@@ -1170,7 +1170,7 @@
                     "method": "PATCH",
                     "body": {
                       "mode": "raw",
-                      "raw": "{\n  \"state\": 4483.936129829484\n}",
+                      "raw": "{\n  \"state\": \"<boolean>\"\n}",
                       "options": {
                         "raw": {
                           "headerFamily": "json",
@@ -1866,6 +1866,611 @@
                   },
                   "status": "Not Found",
                   "code": 404,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "portal",
+      "description": "",
+      "item": [
+        {
+          "name": "preferences",
+          "description": "",
+          "item": [
+            {
+              "name": "List authenticated user receive-route preferences.",
+              "request": {
+                "name": "List authenticated user receive-route preferences.",
+                "description": {},
+                "url": {
+                  "path": [
+                    "portal",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User-scoped receive-route preferences.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "preferences"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"schema\": \"<string>\",\n  \"user\": {\n    \"maskedDisplay\": \"<string>\"\n  },\n  \"groups\": [\n    {\n      \"paytagRef\": \"<string>\",\n      \"chain\": \"<string>\",\n      \"network\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"routes\": [\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        },\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        }\n      ],\n      \"maskedDisplay\": \"<string>\",\n      \"payingDapp\": {\n        \"id\": \"<string>\",\n        \"displayName\": \"<string>\"\n      }\n    },\n    {\n      \"paytagRef\": \"<string>\",\n      \"chain\": \"<string>\",\n      \"network\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"routes\": [\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        },\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        }\n      ],\n      \"maskedDisplay\": \"<string>\",\n      \"payingDapp\": {\n        \"id\": \"<string>\",\n        \"displayName\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "name": "Missing or invalid app authentication signature.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "preferences"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            },
+            {
+              "name": "Reorder authenticated user receive-route preferences.",
+              "request": {
+                "name": "Reorder authenticated user receive-route preferences.",
+                "description": {},
+                "url": {
+                  "path": [
+                    "portal",
+                    "preferences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema\": \"<string>\",\n  \"group\": {\n    \"paytagRef\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"network\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"payingDappId\": \"<string>\"\n  },\n  \"orderedRouteIds\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "Updated user-scoped preferences.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "preferences"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PUT",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"schema\": \"<string>\",\n  \"group\": {\n    \"paytagRef\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"network\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"payingDappId\": \"<string>\"\n  },\n  \"orderedRouteIds\": [\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"schema\": \"<string>\",\n  \"user\": {\n    \"maskedDisplay\": \"<string>\"\n  },\n  \"groups\": [\n    {\n      \"paytagRef\": \"<string>\",\n      \"chain\": \"<string>\",\n      \"network\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"routes\": [\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        },\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        }\n      ],\n      \"maskedDisplay\": \"<string>\",\n      \"payingDapp\": {\n        \"id\": \"<string>\",\n        \"displayName\": \"<string>\"\n      }\n    },\n    {\n      \"paytagRef\": \"<string>\",\n      \"chain\": \"<string>\",\n      \"network\": \"<string>\",\n      \"asset\": \"<string>\",\n      \"routes\": [\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        },\n        {\n          \"routeId\": \"<string>\",\n          \"payToDappId\": \"<string>\",\n          \"payToDappName\": \"<string>\",\n          \"priority\": \"<string>\",\n          \"isDefault\": \"<string>\",\n          \"state\": \"<string>\",\n          \"appUrl\": \"<string>\"\n        }\n      ],\n      \"maskedDisplay\": \"<string>\",\n      \"payingDapp\": {\n        \"id\": \"<string>\",\n        \"displayName\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "name": "Invalid public request shape or unsupported request.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "preferences"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PUT",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"schema\": \"<string>\",\n  \"group\": {\n    \"paytagRef\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"network\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"payingDappId\": \"<string>\"\n  },\n  \"orderedRouteIds\": [\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "name": "Missing or invalid app authentication signature.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "preferences"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "PUT",
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"schema\": \"<string>\",\n  \"group\": {\n    \"paytagRef\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"network\": \"<string>\",\n    \"asset\": \"<string>\",\n    \"payingDappId\": \"<string>\"\n  },\n  \"orderedRouteIds\": [\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                }
+              ],
+              "event": [],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              }
+            }
+          ]
+        },
+        {
+          "name": "history",
+          "description": "",
+          "item": [
+            {
+              "name": "List authenticated user questions, answers, quotes, intents, and receipts.",
+              "request": {
+                "name": "List authenticated user questions, answers, quotes, intents, and receipts.",
+                "description": {},
+                "url": {
+                  "path": [
+                    "portal",
+                    "history"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": " (This can only be one of questions,answers,quotes,intents,receipts,all)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "quotes"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": " (This can only be one of paying_dapp,payto_dapp,token,chain)",
+                        "type": "text/plain"
+                      },
+                      "key": "groupBy",
+                      "value": "paying_dapp"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {},
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "User-scoped history.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "history"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": " (This can only be one of questions,answers,quotes,intents,receipts,all)",
+                            "type": "text/plain"
+                          },
+                          "key": "type",
+                          "value": "quotes"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": " (This can only be one of paying_dapp,payto_dapp,token,chain)",
+                            "type": "text/plain"
+                          },
+                          "key": "groupBy",
+                          "value": "paying_dapp"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{\n  \"schema\": \"<string>\",\n  \"user\": {\n    \"maskedDisplay\": \"<string>\"\n  },\n  \"items\": [\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"createdAt\": \"<string>\",\n      \"payingDapp\": {\n        \"id\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"appUrl\": \"<string>\"\n      },\n      \"requestedPaths\": [\n        {\n          \"chain\": \"<string>\",\n          \"network\": \"<string>\",\n          \"asset\": \"<string>\"\n        }\n      ],\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      },\n      \"purpose\": \"<string>\",\n      \"payingDappReference\": \"<string>\",\n      \"paytagMaskedDisplay\": \"<string>\"\n    },\n    {\n      \"kind\": \"<string>\",\n      \"id\": \"<string>\",\n      \"createdAt\": \"<string>\",\n      \"payingDapp\": {\n        \"id\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"appUrl\": \"<string>\"\n      },\n      \"requestedPaths\": [\n        {\n          \"chain\": \"<string>\",\n          \"network\": \"<string>\",\n          \"asset\": \"<string>\"\n        }\n      ],\n      \"amount\": {\n        \"value\": \"<string>\",\n        \"currency\": \"<string>\"\n      },\n      \"purpose\": \"<string>\",\n      \"payingDappReference\": \"<string>\",\n      \"paytagMaskedDisplay\": \"<string>\"\n    }\n  ],\n  \"nextCursor\": \"<string>\"\n}",
+                  "cookie": [],
+                  "_postman_previewlanguage": "json"
+                },
+                {
+                  "name": "Missing or invalid app authentication signature.",
+                  "originalRequest": {
+                    "url": {
+                      "path": [
+                        "portal",
+                        "history"
+                      ],
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "query": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": " (This can only be one of questions,answers,quotes,intents,receipts,all)",
+                            "type": "text/plain"
+                          },
+                          "key": "type",
+                          "value": "quotes"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": " (This can only be one of paying_dapp,payto_dapp,token,chain)",
+                            "type": "text/plain"
+                          },
+                          "key": "groupBy",
+                          "value": "paying_dapp"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": []
+                    },
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": {
+                          "content": "Added as a part of security scheme: bearer",
+                          "type": "text/plain"
+                        },
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "method": "GET",
+                    "body": {}
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
                   "header": [
                     {
                       "key": "Content-Type",

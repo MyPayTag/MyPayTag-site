@@ -34,3 +34,8 @@ translations only when making or reporting a request.
 
 Kept the paying app display label after saving a priority. The write result
 has the same app ID but does not embed its display name.
+## 2026-11-08 portal review and staging preparation
+
+- Added links to older history pages and retained question context when filtering a page by activity type.
+- Synced the public API artifacts from the SDK portal contract.
+- Set the Vercel dev preview resolver and Cubid staging callback for the deployment acceptance in backend issue #30.
