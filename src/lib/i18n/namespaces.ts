@@ -81,8 +81,6 @@ export const translationKeys = {
     "localeEnglish",
     "localeSwedish",
     "localePseudo",
-    "localeDetectedSweden",
-    "localeDefaultEnglish",
     "receivePathsEyebrow",
     "receivePathsTitle",
     "receivePathsDescription",

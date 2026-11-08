@@ -22,24 +22,16 @@ export function detectLocaleFromRequestHeaders(
     return cookieLocale;
   }
 
-  for (const headerName of countryHeaderNames) {
-    const country = requestHeaders.get(headerName);
-
-    if (country?.toUpperCase() === "SE") {
-      return "sv";
+  const acceptLanguage = requestHeaders.get("accept-language");
+  if (acceptLanguage) {
+    for (const locale of parseAcceptedLanguages(acceptLanguage)) {
+      const language = locale.toLowerCase().split("-")[0];
+      if (language === "en" || language === "sv") return language;
     }
   }
 
-  const acceptLanguage = requestHeaders.get("accept-language");
-
-  if (acceptLanguage) {
-    const preferredLocale = parseAcceptedLanguages(acceptLanguage).find((locale) => {
-      return locale === "sv" || locale.toLowerCase() === "sv-se";
-    });
-
-    if (preferredLocale) {
-      return "sv";
-    }
+  for (const headerName of countryHeaderNames) {
+    if (requestHeaders.get(headerName)?.toUpperCase() === "SE") return "sv";
   }
 
   return defaultLocale;
@@ -59,7 +51,7 @@ function readLocaleCookie(cookieHeader: string | null): SupportedLocale | null {
     return null;
   }
 
-  const value = decodeURIComponent(localeCookie.split("=").slice(1).join("="));
+  const value = localeCookie.slice(localeCookieName.length + 1);
 
   return isSupportedLocale(value) ? normalizeLocale(value) : null;
 }
@@ -75,7 +67,7 @@ function parseAcceptedLanguages(header: string) {
         quality: quality ? Number.parseFloat(quality) : 1,
       };
     })
-    .filter((entry) => entry.locale.length > 0)
+    .filter((entry) => entry.locale.length > 0 && entry.quality > 0 && entry.quality <= 1)
     .sort((left, right) => right.quality - left.quality)
     .map((entry) => entry.locale);
 }

@@ -82,8 +82,6 @@ const en = {
     localeEnglish: "English",
     localeSwedish: "Swedish",
     localePseudo: "Pseudo-locale",
-    localeDetectedSweden: "Swedish selected for Sweden.",
-    localeDefaultEnglish: "English is used globally by default.",
     receivePathsEyebrow: "Receive paths",
     receivePathsTitle: "Prioritize where payments land",
     receivePathsDescription:
@@ -323,8 +321,6 @@ const sv = {
     localeEnglish: "Engelska",
     localeSwedish: "Svenska",
     localePseudo: "Pseudospråk",
-    localeDetectedSweden: "Svenska valdes för Sverige.",
-    localeDefaultEnglish: "Engelska används globalt som standard.",
     receivePathsEyebrow: "Mottagningsvägar",
     receivePathsTitle: "Prioritera var betalningar landar",
     receivePathsDescription:

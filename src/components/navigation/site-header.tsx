@@ -3,6 +3,7 @@
 import { Github } from "lucide-react";
 import Link from "next/link";
 
+import { HeaderLocaleSwitcher } from "@/components/i18n/header-locale-switcher";
 import { CubidSessionControl } from "@/components/cubid/session-control";
 import { useTypedTranslation } from "@/lib/i18n/use-typed-translation";
 
@@ -54,7 +55,8 @@ export function SiteHeader() {
           </a>
         </nav>
 
-        <div>
+        <div className="flex items-center gap-3">
+          <HeaderLocaleSwitcher />
           <CubidSessionControl />
         </div>
       </div>

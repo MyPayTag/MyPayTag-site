@@ -15,7 +15,8 @@ import {
   isSupportedLocale,
   type SupportedLocale,
 } from "@/lib/i18n/config";
-import { getClientI18n } from "@/lib/i18n/client";
+import { createClientI18n } from "@/lib/i18n/client";
+import { localeCookieName } from "@/lib/i18n/detection";
 
 interface I18nProviderProps {
   children: ReactNode;
@@ -35,23 +36,35 @@ export function I18nProvider({
   children,
   initialLocale = defaultLocale,
 }: I18nProviderProps) {
-  const startingLocale = readStoredFixtureLocale(initialLocale);
-  const i18n = getClientI18n(startingLocale);
-  const [locale, setLocaleState] = useState<SupportedLocale>(startingLocale);
+  const [i18n] = useState(() => createClientI18n(initialLocale));
+  const [locale, setLocaleState] = useState(initialLocale);
 
   useEffect(() => {
-    void i18n.changeLanguage(locale);
-    document.documentElement.lang = locale;
-  }, [i18n, locale]);
+    function onLanguageChanged(nextLocale: string) {
+      if (isSupportedLocale(nextLocale)) {
+        setLocaleState(nextLocale);
+        document.documentElement.lang = nextLocale;
+      }
+    }
+
+    i18n.on("languageChanged", onLanguageChanged);
+    // Use the server locale through hydration, then apply any older local override.
+    const storedLocale = readStoredFixtureLocale(initialLocale);
+    if (storedLocale !== i18n.language) {
+      void i18n.changeLanguage(storedLocale);
+    }
+    return () => {
+      i18n.off("languageChanged", onLanguageChanged);
+    };
+  }, [i18n, initialLocale]);
 
   const value = useMemo<LocaleContextValue>(
     () => ({
       locale,
       setLocale(nextLocale) {
-        setLocaleState(nextLocale);
-        window.localStorage.setItem(localeStorageKey, nextLocale);
+        window.localStorage.removeItem(localeStorageKey);
+        document.cookie = `${localeCookieName}=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
         void i18n.changeLanguage(nextLocale);
-        document.documentElement.lang = nextLocale;
       },
     }),
     [i18n, locale],
