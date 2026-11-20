@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
+import { quoteAmountValue } from "@/lib/quote-amount";
+
 type AmountMode = "usd" | "token";
 
 interface EthereumProvider {
@@ -163,7 +165,7 @@ export function EnterPaytagPage() {
             sourceAsset: quoteSource.asset,
             destinationAsset: "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
             amount: {
-              value: requestedAmount.toFixed(2),
+              value: quoteAmountValue(amountMode === "usd" ? usdAmount : tokenAmount, amountMode),
               currency: requestedSymbol,
             },
             preferredSolverId: "near_intents_1click",

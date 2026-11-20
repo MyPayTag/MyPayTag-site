@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const repoRoot = process.cwd();
-const homepage = readFileSync(join(repoRoot, "src/app/page.tsx"), "utf8");
+const homepage = readFileSync(join(repoRoot, "src/components/home/home-page.tsx"), "utf8");
 const playgroundRoute = readFileSync(join(repoRoot, "src/app/api/playground/call/route.ts"), "utf8");
 const playgroundExamples = readFileSync(join(repoRoot, "src/lib/playground/examples.ts"), "utf8");
 const explainer = readFileSync(

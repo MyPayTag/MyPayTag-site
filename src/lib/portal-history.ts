@@ -36,6 +36,7 @@ export interface PortalAnswerSummary {
   questionId: string;
   createdAt: string;
   status: string;
+  selectedPayToDapp?: PortalDappSummary;
 }
 
 export interface PortalAssetAmount {
@@ -152,6 +153,7 @@ function historyGroupLabel(
     return question?.payingDapp.displayName ?? "Unknown PayingDapp";
   }
   if (filter === "payto-app") {
+    if (item.kind === "answer") return item.selectedPayToDapp?.displayName ?? "No PayToDapp selected";
     return item.kind === "payment_intent"
       ? item.payToDapp.displayName
       : "No PayToDapp selected";
