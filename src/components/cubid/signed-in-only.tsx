@@ -1,10 +1,12 @@
 "use client";
 
+import { useOptionalCubidAuth } from "@cubid/auth-react";
 import { LoaderCircle, ShieldCheck } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { useMockSession } from "@/components/auth/mock-session-provider";
-import { credentialLabel } from "@/lib/mock-session";
+import { CubidSessionControl } from "@/components/cubid/session-control";
+import { missingCubidPublicConfig } from "@/lib/cubid/public-config";
+import { useTypedTranslation } from "@/lib/i18n/use-typed-translation";
 
 interface SignedInOnlyProps {
   children: ReactNode;
@@ -13,35 +15,49 @@ interface SignedInOnlyProps {
 }
 
 export function SignedInOnly({ children, description, title }: SignedInOnlyProps) {
-  const { isLoaded, session } = useMockSession();
+  const auth = useOptionalCubidAuth();
+  const missing = missingCubidPublicConfig();
+  const { t } = useTypedTranslation("auth");
 
-  if (!isLoaded) {
+  if (missing.length > 0 || !auth) {
     return (
       <AccessPanel
-        description="Checking your mock session before showing this page."
-        title="Checking sign-in"
+        description={t("missingConfigDescription")}
+        detail={t("missingConfigDetail", { values: missing.join(", ") || "Cubid auth provider" })}
+        title={t("missingConfigTitle")}
+      />
+    );
+  }
+
+  if (auth.status === "idle" || auth.status === "loading") {
+    return (
+      <AccessPanel
+        description={t("checkingDescription")}
+        title={t("checkingTitle")}
       >
         <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#586250]">
           <LoaderCircle className="animate-spin" size={17} aria-hidden="true" />
-          Loading
+          {t("checkingTitle")}
         </span>
       </AccessPanel>
     );
   }
 
-  if (!session) {
+  if (!auth.isAuthenticated) {
     return (
       <AccessPanel
         description={description}
         title={title}
-        detail="Use the Sign in menu in the header. This is a temporary mock gate until SIWC is connected."
-      />
+        detail={t("signInDetail")}
+      >
+        <CubidSessionControl />
+      </AccessPanel>
     );
   }
 
   return (
     <>
-      <div className="sr-only">Signed in with {credentialLabel(session.credential)}</div>
+      <div className="sr-only">{t("signedInWithCubid")}</div>
       {children}
     </>
   );

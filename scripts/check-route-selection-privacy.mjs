@@ -17,6 +17,7 @@ const forbidden = [
   { name: "private diagnostics", pattern: /private\s+diagnostic|stack trace|sqlstate/i },
   { name: "wallet graph claim", pattern: /wallet\s+graph/i },
   { name: "profile directory claim", pattern: /profile\s+directory|searchable\s+profile/i },
+  { name: "prior account or transaction details", pattern: /fromAccount|lastTransaction|Last facilitated/i },
 ];
 
 const findings = [];

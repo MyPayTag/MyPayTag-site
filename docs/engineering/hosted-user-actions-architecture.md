@@ -1,12 +1,12 @@
-# GlobalPayTo Hosted User Actions Architecture
+# MyPayTag Hosted User Actions Architecture
 
 Date: 2026-06-24  
 Status: MVP architecture  
-Repo: `globalpayto-site`
+Repo: `mypaytag-site`
 
 ## Scope
 
-This public repo owns the user-facing GlobalPayTo site and the minimal hosted action pages needed by the MVP. It should stay focused on browser-safe user experiences and must not contain private resolver implementation details.
+This public repo owns the user-facing MyPayTag site and the minimal hosted action pages needed by the MVP. It should stay focused on browser-safe user experiences and must not contain private resolver implementation details.
 
 The MVP site surfaces are:
 
@@ -18,7 +18,7 @@ The MVP site surfaces are:
 
 The site does not own production Supabase schema, Edge Functions, provider callbacks, audit logging, private admin tools, or operational resolver logic.
 
-For public protocol contracts and integration examples, see the GlobalPayTo SDK repository docs, especially `docs/engineering/protocol-and-sdk-architecture.md` and `docs/engineering/mvp-api-contracts.md`.
+For public protocol contracts and integration examples, see the MyPayTag SDK repository docs, especially `docs/engineering/protocol-and-sdk-architecture.md` and `docs/engineering/mvp-api-contracts.md`.
 
 ## Product Boundary
 
@@ -35,7 +35,7 @@ The site is not a full dashboard in the MVP. It should not include:
 
 The site exists to help a user safely complete receive-route selection that an
 API flow could not finish without user involvement and to let a signed-in user
-review GlobalPayTo resolver activity without exposing wallet graphs. The history
+review MyPayTag resolver activity without exposing wallet graphs. The history
 view is intentionally narrow: it distinguishes route availability queries,
 option-producing intents, and initiated transactions, but it is not a wallet
 manager, payment settlement tracker, inbox, or admin console.
@@ -82,7 +82,7 @@ Any server route added to this app must be reviewed against the public/private s
 
 ## Dependencies
 
-This repo is forked from `Cubid-Me/cubid-starter-v3` and currently demonstrates Cubid identity primitives. The GlobalPayTo site should reuse those Cubid patterns where they fit:
+This repo is forked from `Cubid-Me/cubid-starter-v3` and currently demonstrates Cubid identity primitives. The MyPayTag site should reuse those Cubid patterns where they fit:
 
 - Login with Cubid / OIDC PKCE for user identity.
 - Hosted Cubid verification or consent launchers where needed.

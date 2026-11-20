@@ -2,7 +2,6 @@
 
 import { useMemo, useState, useTransition } from "react";
 import { buildClearPassVerifyUrl } from "@cubid/browser";
-import { createCubidCommsClient } from "@cubid/comms";
 import {
   CubidAuthProvider,
   CubidSignInButton,
@@ -20,6 +19,7 @@ import {
   LoaderCircle,
   LogIn,
 } from "lucide-react";
+import { cubidStagingIssuer, fetchStagingCubidOidc } from "@/lib/cubid/staging-oidc";
 
 const publicConfig = {
   clearPassPageId: process.env.NEXT_PUBLIC_CUBID_CLEARPASS_PAGE_ID ?? "",
@@ -72,6 +72,7 @@ export function BrowserDemo() {
   return (
     <CubidAuthProvider
       autoUserInfo
+      fetch={publicConfig.issuer === cubidStagingIssuer ? fetchStagingCubidOidc : undefined}
       clientId={publicConfig.clientId}
       issuer={publicConfig.issuer}
       postLogoutRedirectUri={
@@ -118,46 +119,15 @@ function BrowserDemoPanel() {
 
     setCommsState({ result: null, status: "loading" });
     startTransition(async () => {
-      try {
-        const client = createCubidCommsClient({
-          accessToken: auth.session!.accessToken,
-          baseUrl: publicConfig.passportBaseUrl,
-        });
-        const [channels, preferences] = await Promise.all([
-          client.channels.list(),
-          client.preferences.list(),
-        ]);
-
-        setCommsState({
-          result: {
-            channels: channels.channels.map((channel) => ({
-              channelId: channel.channelId,
-              channelType: channel.channelType,
-              displayHint: channel.displayHint,
-              isDefault: channel.isDefault,
-              label: channel.label,
-              status: channel.status,
-              verificationStatus: channel.verificationStatus,
-            })),
-            preferences: preferences.preferences.map((preference) => ({
-              categoryKey: preference.categoryKey,
-              channelId: preference.channelId,
-              mutedUntil: preference.mutedUntil,
-              priorityFloor: preference.priorityFloor,
-              status: preference.status,
-            })),
-          },
-          status: "success",
-        });
-      } catch (error) {
-        setCommsState({
-          result:
-            error instanceof Error
-              ? { message: error.message, name: error.name }
-              : { message: "Unable to load Cubid comms profile." },
-          status: "error",
-        });
-      }
+      setCommsState({
+        result: {
+          message:
+            "Cubid comms browser helpers are not published on npm for standalone Vercel deployments yet.",
+          nextStep:
+            "Re-enable live notification preference loading after @cubid/comms is published.",
+        },
+        status: "success",
+      });
     });
   }
 
@@ -171,8 +141,7 @@ function BrowserDemoPanel() {
           <h2 className="text-xl font-semibold">Browser UX demo</h2>
           <p className="mt-2 text-sm leading-6 text-[#596456]">
             These controls use browser-safe packages only: `@cubid/auth-react`,
-            `@cubid/browser`, `@cubid/react`, `@cubid/comms`, and
-            `@cubid/wallet-recovery-react`.
+            `@cubid/browser`, `@cubid/react`, and `@cubid/wallet-recovery-react`.
           </p>
         </div>
       </div>

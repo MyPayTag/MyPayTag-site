@@ -1,29 +1,40 @@
 {
-  "name": "globalpayto-site",
+  "name": "mypaytag-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "api:validate": "pnpm --dir ../mypaytag-sdk api:validate && pnpm check:openapi-sync",
+    "api:docs": "next dev",
+    "api:postman": "node scripts/sync-api-artifacts.mjs",
+    "check:hosted-action-a11y": "node scripts/check-hosted-action-a11y-responsive.mjs",
+    "check:hosted-actions": "node scripts/check-hosted-action-acceptance.mjs",
     "scan:browser-secrets": "node scripts/scan-browser-secrets.mjs",
+    "check:solver-content": "node scripts/check-solver-content.mjs",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check:openapi-sync": "node scripts/check-openapi-sync.mjs",
+    "scan:public-docs": "node scripts/scan-public-docs.mjs",
     "start": "next start",
     "lint": "eslint",
     "privacy:route-selection": "node scripts/check-route-selection-privacy.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@cubid/auth": "workspace:*",
-    "@cubid/auth-react": "workspace:*",
-    "@cubid/browser": "workspace:*",
-    "@cubid/comms": "workspace:*",
-    "@cubid/core": "workspace:*",
-    "@cubid/react": "workspace:*",
-    "@cubid/wallet-recovery": "workspace:*",
-    "@cubid/wallet-recovery-react": "workspace:*",
+    "@cubid/auth": "^0.1.0",
+    "@cubid/auth-react": "^0.1.0",
+    "@cubid/browser": "^0.2.0",
+    "@cubid/core": "^0.2.0",
+    "@cubid/react": "^0.1.2",
+    "@cubid/wallet-recovery": "^0.1.0",
+    "@cubid/wallet-recovery-react": "^0.1.0",
+    "@scalar/nextjs-api-reference": "^0.11.6",
+    "i18next": "^26.3.4",
     "lucide-react": "^0.556.0",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "react-i18next": "^17.0.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -34,5 +45,10 @@
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@cubid/auth-react>@cubid/auth": "0.1.0"
+    }
   }
 }

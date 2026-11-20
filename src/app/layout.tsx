@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { headers } from "next/headers";
 
-import { MockSessionProvider } from "@/components/auth/mock-session-provider";
 import { AppAuthProvider } from "@/components/cubid/app-auth-provider";
+import { I18nProvider } from "@/components/i18n/i18n-provider";
 import { SiteHeader } from "@/components/navigation/site-header";
+import { detectLocaleFromRequestHeaders } from "@/lib/i18n/detection";
 
 import "./globals.css";
 
@@ -18,28 +20,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GlobalPayTo",
+  title: "MyPayTag",
   description:
-    "A global pay-to layer for crypto apps, sending apps, receiving apps, wallets, and users.",
+    "A Paytag layer for crypto apps, PayingDapps, PayToDapps, wallets, and users.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialLocale = detectLocaleFromRequestHeaders(await headers());
+
   return (
     <html
-      lang="en"
+      lang={initialLocale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <AppAuthProvider>
-          <MockSessionProvider>
+        <I18nProvider initialLocale={initialLocale}>
+          <AppAuthProvider>
             <SiteHeader />
             {children}
-          </MockSessionProvider>
-        </AppAuthProvider>
+          </AppAuthProvider>
+        </I18nProvider>
       </body>
     </html>
   );

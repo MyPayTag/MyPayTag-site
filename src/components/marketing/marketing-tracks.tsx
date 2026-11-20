@@ -33,52 +33,52 @@ const tracks: Record<
 > = {
   sending: {
     accent: "#176b46",
-    audience: "For devs of sending apps",
+    audience: "For PayingDapp devs",
     eyebrow: "Expand what your app can send",
-    title: "Send to any user by pay-to tag.",
+    title: "Send to any user by Paytag.",
     intro:
-      "No pre-registration requirement. No wallet collection. No chain-by-chain routing maze for your users.",
+      "PayingDapps call MyPayTag with a user-approved Paytag, amount, and supported paths instead of collecting wallet details.",
     benefits: [
       {
         icon: Code2,
-        title: "One interface",
-        text: "Send any token from any chain directly into a user's preferred receive app by resolving a simple pay-to tag.",
+        title: "MVP resolver path",
+        text: "Resolve a Paytag through MyPayTag, then use the selected PayToDapp provider intent.",
       },
       {
         icon: Network,
-        title: "Radical abstraction",
-        text: "Hide wallet, route, bridge, and exchange complexity behind one resolver flow.",
+        title: "Clear boundaries",
+        text: "Cubid handles identity and consent; MyPayTag handles route preference and provider intent orchestration.",
       },
       {
         icon: Repeat2,
-        title: "Optional optimization",
-        text: "Use auto route optimization, bridging, and exchanging when you want one managed path.",
+        title: "Future optimization",
+        text: "Solver fanout, bridging, and exchanging are execution-adapter extensions, not MVP requirements.",
       },
       {
         icon: BanknoteArrowDown,
         title: "Fee control",
-        text: "You set your own fees. If you use our exchange service, GlobalPayTo takes a percentage of your fees.",
+        text: "You set your own fees. If you use our exchange service, MyPayTag takes a percentage of your fees.",
       },
     ],
     features: [
       "Reach users without storing their wallets",
-      "Play nicely with every receiving app in the ecosystem",
-      "Keep control over fees, routes, and user experience",
+      "Play nicely with every PayToDapp in the ecosystem",
+      "Keep control over fees and user experience",
       "Reduce support caused by wrong-chain and wrong-address sends",
     ],
   },
   receiving: {
     accent: "#245c8d",
-    audience: "For receiving apps and wallets",
+    audience: "For PayToDapps and wallets",
     eyebrow: "Turn users into distribution",
     title: "Let your users market your wallet for you.",
     intro:
-      "Users share one globally recognized pay-to tag, and incoming funds land in the wallet experience your app manages.",
+      "Users share one globally recognized Paytag, and your app creates provider intents only when MyPayTag selects your route.",
     benefits: [
       {
         icon: Gift,
         title: "Inbound growth",
-        text: "Every pay-to tag your users share can route funds back into your app-managed wallet.",
+        text: "Every Paytag your users share can bring eligible payments back to your app-managed receive experience.",
       },
       {
         icon: WalletCards,
@@ -97,8 +97,8 @@ const tracks: Record<
       },
     ],
     features: [
-      "Set up tags from inside your wallet flow",
-      "Stay compatible with sending apps across the ecosystem",
+      "Register supported routes from inside your wallet flow",
+      "Stay compatible with PayingDapps across the ecosystem",
       "Own the receive experience and route registration",
       "Keep users engaged without forcing manual address sharing",
     ],
@@ -107,14 +107,14 @@ const tracks: Record<
     accent: "#6a5c1f",
     audience: "For users",
     eyebrow: "A simpler way to get paid",
-    title: "Connect your apps and wallets with one pay-to tag.",
+    title: "Connect your apps and wallets with one Paytag.",
     intro:
       "Set up the tag from your favorite wallet, then tell other apps this is how you want to get paid.",
     benefits: [
       {
         icon: Tags,
         title: "One tag",
-        text: "Use a globally recognized pay-to tag instead of copying addresses across every app.",
+        text: "Use a globally recognized Paytag instead of copying addresses across every app.",
       },
       {
         icon: ShieldCheck,
@@ -124,7 +124,7 @@ const tracks: Record<
       {
         icon: Sparkles,
         title: "No routing hassle",
-        text: "GlobalPayTo handles chain, token, exchange, and route complexity behind the scenes.",
+        text: "MyPayTag handles approved route selection, with NEAR 1Click covering MVP swap and bridge execution for the first SmarTrust path.",
       },
       {
         icon: BadgeCheck,
@@ -133,7 +133,7 @@ const tracks: Record<
       },
     ],
     features: [
-      "Set up from your favorite wallet",
+      "Create identity and consent in Cubid-owned flows",
       "Share the same tag across apps",
       "Receive only through routes you approve",
       "Let optimized routing handle the messy parts",
@@ -158,7 +158,7 @@ export function MarketingTracks() {
             What role do you play?
           </h2>
           <p className="mt-4 text-base leading-7 text-[#586250]">
-            GlobalPayTo connects three groups. All benefits are visible until
+            MyPayTag connects three groups. All benefits are visible until
             you pick the role that matches your product.
           </p>
         </div>

@@ -1,4 +1,4 @@
-const routeActionPattern = /^gptr_act_route_[a-z0-9_-]{3,80}$/;
+const routeActionPattern = /^mpt_act_[a-z0-9_-]{3,80}$/;
 
 export function isValidHostedActionId(actionId: string): boolean {
   return routeActionPattern.test(actionId);

@@ -25,6 +25,7 @@ export function ProtectedRouteSelectionPage({
 }
 
 function RouteSelectionLoader({ actionId }: ProtectedRouteSelectionPageProps) {
+  const encodedActionId = encodeURIComponent(actionId);
   const [action, setAction] = useState<RouteSelectionAction | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
 
@@ -34,7 +35,7 @@ function RouteSelectionLoader({ actionId }: ProtectedRouteSelectionPageProps) {
     async function loadAction() {
       setStatus("loading");
       try {
-        const response = await fetch(`/api/actions/route-selection/${actionId}`, {
+        const response = await fetch(`/api/actions/route-selection/${encodedActionId}`, {
           cache: "no-store",
         });
 
@@ -60,7 +61,7 @@ function RouteSelectionLoader({ actionId }: ProtectedRouteSelectionPageProps) {
     return () => {
       cancelled = true;
     };
-  }, [actionId]);
+  }, [encodedActionId]);
 
   if (status === "loading") {
     return (
@@ -91,7 +92,7 @@ function RouteSelectionLoader({ actionId }: ProtectedRouteSelectionPageProps) {
   return (
     <RouteSelectionClient
       action={action}
-      submitUrl={`/api/actions/route-selection/${actionId}`}
+      submitUrl={`/api/actions/route-selection/${encodedActionId}`}
     />
   );
 }

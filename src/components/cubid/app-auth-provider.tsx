@@ -8,6 +8,8 @@ import {
   missingCubidPublicConfig,
 } from "@/lib/cubid/public-config";
 
+import { cubidStagingIssuer, fetchStagingCubidOidc } from "@/lib/cubid/staging-oidc";
+
 export function AppAuthProvider({ children }: { children: ReactNode }) {
   if (missingCubidPublicConfig().length > 0) {
     return <>{children}</>;
@@ -16,6 +18,7 @@ export function AppAuthProvider({ children }: { children: ReactNode }) {
   return (
     <CubidAuthProvider
       autoUserInfo
+      fetch={cubidPublicConfig.issuer === cubidStagingIssuer ? fetchStagingCubidOidc : undefined}
       clientId={cubidPublicConfig.clientId}
       issuer={cubidPublicConfig.issuer}
       postLogoutRedirectUri={

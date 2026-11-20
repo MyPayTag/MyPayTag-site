@@ -28,10 +28,10 @@ export type BlogBlock =
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "introducing-globalpaytoresolver-pay-users-not-wallet-addresses",
-    title: "Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses",
+    slug: "introducing-mypaytag-pay-users-not-wallet-addresses",
+    title: "Introducing MyPayTag: Pay Users, Not Wallet Addresses",
     description:
-      "GlobalPayToResolver helps apps pay users through approved identity and consented payment intents instead of copied wallet addresses.",
+      "MyPayTag helps apps pay users through approved identity and consented payment intents instead of copied wallet addresses.",
     category: "Product / Vision",
     publishedAt: "2026-06-24",
     readingMinutes: 5,
@@ -50,7 +50,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "GlobalPayToResolver starts from a different question: what user-approved identifier can an app pay to? A verified email-like stamp, domain-like stamp, public pay-to handle, or other approved identifier can become the entry point for payment resolution without becoming a permanent public wallet endpoint.",
+        text: "MyPayTag starts from a different question: what user-approved identifier can an app pay to? A verified email-like stamp, domain-like stamp, public pay-to handle, or other approved identifier can become the entry point for payment resolution without becoming a permanent public wallet endpoint.",
       },
       {
         type: "paragraph",
@@ -62,11 +62,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Cubid provides the identity and consent substrate: verified stamps, app-scoped user identity, and user-facing approval moments. GlobalPayToResolver is the payment-resolution layer that uses that identity context to decide what receive path can be used for a specific payment request.",
+        text: "Cubid provides the identity and consent substrate: verified stamps, app-scoped user identity, and user-facing approval moments. MyPayTag is the payment-resolution layer that uses that identity context to decide what receive path can be used for a specific payment request.",
       },
       {
         type: "paragraph",
-        text: "That separation matters. Cubid is not being treated as a universal payment address, and GlobalPayToResolver is not trying to become the identity provider. Each layer has a narrow job.",
+        text: "That separation matters. Cubid is not being treated as a universal payment address, and MyPayTag is not trying to become the identity provider. Each layer has a narrow job.",
       },
       {
         type: "heading",
@@ -90,7 +90,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "We are building with early PayToDapp and PayingDapp partners now. Wallets, embedded wallet providers, payout products, marketplaces, and escrow systems are the first natural fits. If your app helps users receive funds or needs to pay users, GlobalPayToResolver is meant to give that workflow a safer default.",
+        text: "We are building with early PayToDapp and PayingDapp partners now. Wallets, embedded wallet providers, payout products, marketplaces, and escrow systems are the first natural fits. If your app helps users receive funds or needs to pay users, MyPayTag is meant to give that workflow a safer default.",
       },
     ],
   },
@@ -137,7 +137,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "GlobalPayToResolver treats those concerns as the product, not as edge cases. A user can authorize a PayingDapp, choose or confirm a PayToDapp route, and receive a scoped payment intent without exposing every eligible wallet or receive provider to the payer.",
+        text: "MyPayTag treats those concerns as the product, not as edge cases. A user can authorize a PayingDapp, choose or confirm a PayToDapp route, and receive a scoped payment intent without exposing every eligible wallet or receive provider to the payer.",
       },
       {
         type: "heading",
@@ -164,7 +164,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "A wallet address is a destination. A payment intent is a decision package. That difference is the heart of GlobalPayToResolver.",
+        text: "A wallet address is a destination. A payment intent is a decision package. That difference is the heart of MyPayTag.",
       },
       {
         type: "paragraph",
@@ -189,7 +189,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "The GlobalPayTo intent is a normalized resolver envelope. It gives the PayingDapp a consistent status, selected path, amount, expiry, single-use behavior, and references while allowing the selected PayToDapp to return the provider-specific instruction needed to execute the payment.",
+        text: "The MyPayTag intent is a normalized resolver envelope. It gives the PayingDapp a consistent status, selected path, amount, expiry, single-use behavior, and references while allowing the selected PayToDapp to return the provider-specific instruction needed to execute the payment.",
       },
       {
         type: "paragraph",
@@ -200,7 +200,7 @@ export const blogPosts: BlogPost[] = [
         code: `{
   "status": "resolved",
   "intent": {
-    "schema": "globalpayto.intent.v1",
+    "schema": "mypaytag.intent.v1",
     "status": "ready",
     "singleUse": true,
     "selectedRoute": {
@@ -225,13 +225,13 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "That is why GlobalPayToResolver is intent-first. The product promise is not that every payment protocol becomes identical. The promise is that identity-based payment resolution returns a safer, structured instruction envelope instead of asking apps to store and replay raw destinations.",
+        text: "That is why MyPayTag is intent-first. The product promise is not that every payment protocol becomes identical. The promise is that identity-based payment resolution returns a safer, structured instruction envelope instead of asking apps to store and replay raw destinations.",
       },
     ],
   },
   {
-    slug: "how-globalpaytoresolver-works-the-five-roles",
-    title: "How GlobalPayToResolver Works: The Five Roles",
+    slug: "how-mypaytag-works-the-five-roles",
+    title: "How MyPayTag Works: The Five Roles",
     description:
       "A clear mental model for the user, Cubid, the resolver, PayToDapps, and PayingDapps in the MVP flow.",
     category: "Developer Education",
@@ -240,7 +240,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "GlobalPayToResolver is easiest to understand when the roles stay separate. The system is not one giant wallet, identity provider, or payment processor. It is a resolution layer with five participants.",
+        text: "MyPayTag is easiest to understand when the roles stay separate. The system is not one giant wallet, identity provider, or payment processor. It is a resolution layer with five participants.",
       },
       {
         type: "heading",
@@ -260,7 +260,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "heading",
-        text: "3. GlobalPayToResolver",
+        text: "3. MyPayTag",
       },
       {
         type: "paragraph",
@@ -311,7 +311,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "GlobalPayToResolver uses two developer-facing roles because payment products tend to face one of two directions. Some apps help users receive funds. Other apps need to pay users. A few do both.",
+        text: "MyPayTag uses two developer-facing roles because payment products tend to face one of two directions. Some apps help users receive funds. Other apps need to pay users. A few do both.",
       },
       {
         type: "heading",
@@ -375,14 +375,14 @@ export const blogPosts: BlogPost[] = [
     slug: "modality-a-vs-modality-b-two-ways-to-integrate-wallets",
     title: "Modality A vs Modality B: Two Ways to Integrate Wallets",
     description:
-      "GlobalPayToResolver can describe two wallet integration modes, but the MVP path is Modality B: route registration plus provider-built intents.",
+      "MyPayTag can describe two wallet integration modes, but the MVP path is Modality B: route registration plus provider-built intents.",
     category: "Wallet Integration",
     publishedAt: "2026-06-24",
     readingMinutes: 6,
     body: [
       {
         type: "paragraph",
-        text: "Wallet integrations can be simple or deeply provider-specific. GlobalPayToResolver uses the terms Modality A and Modality B to distinguish two ways a PayToDapp can participate in payment resolution.",
+        text: "Wallet integrations can be simple or deeply provider-specific. MyPayTag uses the terms Modality A and Modality B to distinguish two ways a PayToDapp can participate in payment resolution.",
       },
       {
         type: "heading",
@@ -422,7 +422,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "It is also more powerful. A provider can return a payment intent that includes references, expiry, memos, or other provider-required fields while still satisfying the public GlobalPayTo contract.",
+        text: "It is also more powerful. A provider can return a payment intent that includes references, expiry, memos, or other provider-required fields while still satisfying the public MyPayTag contract.",
       },
       {
         type: "heading",
@@ -445,7 +445,7 @@ export const blogPosts: BlogPost[] = [
     body: [
       {
         type: "paragraph",
-        text: "The smallest useful GlobalPayTo request says who the PayingDapp wants to pay, what payment paths it can support, and what amount should be resolved into a one-time payment intent.",
+        text: "The smallest useful MyPayTag request says who the PayingDapp wants to pay, what payment paths it can support, and what amount should be resolved into a one-time payment intent.",
       },
       {
         type: "paragraph",
@@ -459,8 +459,8 @@ export const blogPosts: BlogPost[] = [
         type: "code",
         code: `{
   "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "email:recipient@example.com"
+    "identifierType": "paytag",
+    "identifier": "abd123@cubid.mypaytag"
   },
   "supportedPaths": [
     {
@@ -485,7 +485,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "list",
         items: [
-          "recipient identifies the user through an approved pay-to identifier, not a public wallet graph.",
+          "recipient identifies the user through an approved Paytag, not a public wallet graph.",
           "supportedPaths tells the resolver what the PayingDapp can actually pay.",
           "amount binds the resulting intent to a concrete value and currency.",
           "purpose gives the user and resolver context for the authorization moment.",
@@ -499,7 +499,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "If the response is resolved, the app receives a GlobalPayTo intent envelope with the selected path and provider payment instruction. If the response is no route or user action required, the app should present the hosted action URL or retry after the user completes setup.",
+        text: "If the response is resolved, the app receives a MyPayTag intent envelope with the selected path and provider payment instruction. If the response is no route or user action required, the app should present the hosted action URL or retry after the user completes setup.",
       },
       {
         type: "paragraph",
@@ -526,7 +526,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "Start by treating GlobalPayToResolver as an integration boundary with its own app identity, callback credentials, and environment separation. Your provider SDK integration should know which routes it can advertise and which callback requests it is willing to honor.",
+        text: "Start by treating MyPayTag as an integration boundary with its own app identity, callback credentials, and environment separation. Your provider SDK integration should know which routes it can advertise and which callback requests it is willing to honor.",
       },
       {
         type: "heading",
@@ -548,8 +548,8 @@ export const blogPosts: BlogPost[] = [
         type: "code",
         code: `{
   "recipient": {
-    "identifierType": "verified_stamp",
-    "identifier": "email:recipient@example.com"
+    "identifierType": "paytag",
+    "identifier": "abd123@cubid.mypaytag"
   },
   "supportedRoutes": [
     {
@@ -594,7 +594,7 @@ export const blogPosts: BlogPost[] = [
     slug: "building-a-payingdapp-integration",
     title: "Building a PayingDapp Integration",
     description:
-      "How apps that need to pay users can request a GlobalPayTo intent and handle resolver statuses safely.",
+      "How apps that need to pay users can request a MyPayTag intent and handle resolver statuses safely.",
     category: "Developer Education",
     publishedAt: "2026-06-24",
     readingMinutes: 7,
@@ -634,7 +634,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "list",
         items: [
-          "resolved means the response contains a ready GlobalPayTo intent with a selected provider instruction.",
+          "resolved means the response contains a ready MyPayTag intent with a selected provider instruction.",
           "no_route means the user needs setup or no eligible route exists; present the action if one is returned.",
           "user_action_required means the user must complete a hosted action such as route selection.",
           "authorization_required means setup or consent is needed before the resolver can return an intent.",
@@ -658,7 +658,7 @@ export const blogPosts: BlogPost[] = [
     slug: "why-we-dont-use-a-universal-cubidid",
     title: "Why We Don't Use a Universal CubidID",
     description:
-      "Universal identifiers are convenient, but GlobalPayToResolver avoids making Cubid identity a cross-app tracking handle.",
+      "Universal identifiers are convenient, but MyPayTag avoids making Cubid identity a cross-app tracking handle.",
     category: "Identity + Privacy",
     publishedAt: "2026-06-24",
     readingMinutes: 5,
@@ -681,7 +681,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "GlobalPayToResolver builds on that idea. Paying a user should happen through approved pay-to identifiers and consented resolver flows, not by exposing a universal Cubid identity to every integration.",
+        text: "MyPayTag builds on that idea. Paying a user should happen through approved pay-to identifiers and consented resolver flows, not by exposing a universal Cubid identity to every integration.",
       },
       {
         type: "heading",
@@ -701,7 +701,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "paragraph",
-        text: "GlobalPayToResolver does not use a universal CubidID because the mature version of identity-based payments is not one id everywhere. It is user-approved payment resolution with privacy boundaries that hold up across apps.",
+        text: "MyPayTag does not use a universal CubidID because the mature version of identity-based payments is not one id everywhere. It is user-approved payment resolution with privacy boundaries that hold up across apps.",
       },
     ],
   },

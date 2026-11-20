@@ -2,7 +2,7 @@
 
 Date: 2026-06-24  
 Status: Sprint 2 design  
-Repo: `globalpayto-site`
+Repo: `mypaytag-site`
 
 ## Setup And Authorization Flow
 
@@ -84,7 +84,7 @@ Route family: `/history`
 
 Purpose:
 
-- let a signed-in user review incoming GlobalPayTo resolver activity,
+- let a signed-in user review incoming MyPayTag resolver activity,
 - group activity by PayingDapp, PayToDapp, token, or chain,
 - quick-filter by queries, intents, transactions, or all activity.
 
@@ -114,8 +114,10 @@ connected. User-mode login must not unlock developer controls.
 
 ## Mock Data Boundary
 
-Local development uses mock action state when a resolver backend URL is not
-configured. Mock state must preserve the privacy contract:
+Local development uses mock action state only when
+`MYPAYTAG_HOSTED_ACTION_MOCK_MODE=true` in a local or test runtime. Missing or
+failed backend hydration otherwise fails closed with a safe restart-required
+state. Mock state must preserve the privacy contract:
 
 - action IDs are opaque,
 - hydrated details are fixture-only,

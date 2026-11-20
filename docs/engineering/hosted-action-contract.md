@@ -2,11 +2,11 @@
 
 Date: 2026-06-24  
 Status: Sprint 1 finalized design  
-Repo: `globalpayto-site`
+Repo: `mypaytag-site`
 
 ## Scope
 
-This public site repo implements browser-safe hosted actions for GlobalPayTo route selection and Cubid comms notification landing targets. It consumes the public contracts finalized in `globalpayto-sdk/docs/engineering/mvp-api-contracts.md` and does not own private resolver behavior.
+This public site repo implements browser-safe hosted actions for MyPayTag route selection and Cubid comms notification landing targets. It consumes the public contracts finalized in `mypaytag-sdk/docs/engineering/mvp-api-contracts.md` and does not own private resolver behavior.
 
 Per-request setup and authorization approval pages are out of scope. Send-to
 channels are pre-authorized for requesting apps by default; users manage where
@@ -79,7 +79,7 @@ Copy must cover:
 
 Copy for provider-reported receipt events or Cubid-comms-driven user-action notifications is outside MVP until those events have explicit trust, disclosure, and callback contracts.
 
-Copy must not imply that GlobalPayTo exposes a wallet graph, profile directory,
+Copy must not imply that MyPayTag exposes a wallet graph, profile directory,
 dashboard, inbox, settlement tracker, or public activity feed. The signed-in
 history page may describe resolver activity types: route availability queries,
 option-producing intents, initiated transactions, and all activity.
@@ -94,7 +94,7 @@ Hosted action pages must show only data needed for the current action:
 
 Route-selection pages must validate the action state before rendering eligible PayToDapps or defaults. Expired, invalid, completed, denied, and restart-required states must not reveal whether the hidden recipient has other routes.
 
-History pages must show only the signed-in user's GlobalPayTo activity. Query
+History pages must show only the signed-in user's MyPayTag activity. Query
 rows mean a PayingDapp checked available routes only. Intent rows mean a request
 like "send USDT from Base to this recipient" produced a set of options.
 Transaction rows mean an option was selected and a transfer was initiated; they

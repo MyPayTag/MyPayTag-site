@@ -1,5 +1,5 @@
 # Blog Post Roadmap
-Here’s an initial blog/content roadmap for the **PayToResolver / GlobalPayToResolver** website, structured around three audiences: **wallet builders**, **dapp builders**, and **ecosystem/protocol thinkers**.
+Here’s an initial blog/content roadmap for the **MyPayTag** website, structured around three audiences: **wallet builders**, **dapp builders**, and **ecosystem/protocol thinkers**.
 
 ## Recommended blog categories
 
@@ -17,7 +17,7 @@ Here’s an initial blog/content roadmap for the **PayToResolver / GlobalPayToRe
 
 # Launch / Vision Posts
 
-## 1. **Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses**
+## 1. **Introducing MyPayTag: Pay Users, Not Wallet Addresses**
 
 Core launch post.
 
@@ -28,7 +28,7 @@ Core launch post.
 * Users have many wallets.
 * Dapps do not know where to pay them.
 * Public wallet addresses are bad UX and bad privacy.
-* GlobalPayToResolver turns a user-approved pay-to identifier into a consented payment intent.
+* MyPayTag turns a user-approved pay-to identifier into a consented payment intent.
 * Powered by Cubid, but separate from Cubid.
 
 **CTA:** Join early PayToDapp / PayingDapp integration program.
@@ -62,19 +62,19 @@ Explains the product’s key abstraction.
 * Address = static destination.
 * Payment intent = structured, scoped, expiring instruction.
 * Payment intents support memos, expiry, one-time routes, provider-specific logic, and auditability.
-* Why GlobalPayToResolver is intent-first.
+* Why MyPayTag is intent-first.
 
 ---
 
 # Developer Education Posts
 
-## 4. **How GlobalPayToResolver Works: The Five Roles**
+## 4. **How MyPayTag Works: The Five Roles**
 
 Explains:
 
 ```text
 User
-GlobalPayToResolver
+MyPayTag
 Cubid
 PayToDapp
 PayingDapp
@@ -270,14 +270,14 @@ Solana Pay
 ERC-681 payment URIs
 hosted payment links
 provider-built wallet intents
-GlobalPayTo normalized intents
+MyPayTag normalized intents
 ```
 
-**Conclusion:** These formats are useful industry context. The MVP returns a GlobalPayTo-owned resolver envelope with provider JSON; it does not wrap Stripe, Solana Pay, ERC-681, hosted payment links, or payment processors.
+**Conclusion:** These formats are useful industry context. The MVP returns a MyPayTag-owned resolver envelope with provider JSON; it does not wrap Stripe, Solana Pay, ERC-681, hosted payment links, or payment processors.
 
 ---
 
-## 15. **Why GlobalPayToResolver Uses Normalized Payment Intents**
+## 15. **Why MyPayTag Uses Normalized Payment Intents**
 
 Technical architecture post.
 
@@ -287,7 +287,7 @@ MVP normalizes:
 
 ```text
 provider-opaque intents
-GlobalPayTo resolver envelope
+MyPayTag resolver envelope
 contracted amount, path, purpose, and reference fields
 ```
 
@@ -352,7 +352,7 @@ Execute payment
 
 ---
 
-## 19. **What PayToResolver Means for Embedded Wallets**
+## 19. **What MyPayTag Means for Embedded Wallets**
 
 Good for Privy/Openfort/Web3Auth-style ecosystem.
 
@@ -466,7 +466,7 @@ Pay-to resolver = identity/identifier → consented payment route/intent
 
 # Build-in-Public / Product Updates
 
-## 29. **Designing GlobalPayToResolver: Why We Chose API-First**
+## 29. **Designing MyPayTag: Why We Chose API-First**
 
 Explain product strategy.
 
@@ -490,7 +490,7 @@ This maps directly to Modality A and B.
 
 ---
 
-## 31. **GlobalPayToResolver Roadmap: From API to User-Controlled Payment Preferences**
+## 31. **MyPayTag Roadmap: From API to User-Controlled Payment Preferences**
 
 Phased roadmap post.
 
@@ -499,7 +499,7 @@ Phase 1: API-first resolver
 Phase 2: Cubid-owned grant discovery and revocation paths
 Phase 3: provider-reported payment status callbacks
 Phase 4: broader payment intent adapters
-Phase 5: GlobalPayTo-owned dashboard, if user demand justifies it
+Phase 5: MyPayTag-owned dashboard, if user demand justifies it
 ```
 
 ---
@@ -509,9 +509,9 @@ Phase 5: GlobalPayTo-owned dashboard, if user demand justifies it
 I would start with these, in this order:
 
 ```text
-1. Introducing GlobalPayToResolver: Pay Users, Not Wallet Addresses
+1. Introducing MyPayTag: Pay Users, Not Wallet Addresses
 2. Why Crypto Needs a Pay-To Layer
-3. How GlobalPayToResolver Works: The Five Roles
+3. How MyPayTag Works: The Five Roles
 4. PayToDapp vs PayingDapp: Which One Are You?
 5. Modality A vs Modality B: Two Ways to Integrate Wallets
 6. Why We Don’t Use a Universal CubidID
@@ -535,7 +535,7 @@ On the site, I’d group them like this:
 
 ```text
 Learn
-  What is GlobalPayToResolver?
+  What is MyPayTag?
   Why crypto needs a pay-to layer
   Payment intents explained
 
@@ -567,7 +567,7 @@ That sounds like ENS/FIO/address book territory.
 
 The sharper message is:
 
-> **GlobalPayToResolver lets approved apps create consented payment intents for users through user-controlled pay-to identifiers, without exposing the user’s wallet graph.**
+> **MyPayTag lets approved apps create consented payment intents for users through user-controlled pay-to identifiers, without exposing the user’s wallet graph.**
 
 Almost every blog post should reinforce one of those words:
 

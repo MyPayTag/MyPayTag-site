@@ -4,7 +4,7 @@ import { BackButton } from "@/components/navigation/back-button";
 import { blogPosts } from "@/lib/blog-posts";
 
 export const metadata = {
-  title: "GlobalPayTo Blog",
+  title: "MyPayTag Blog",
   description:
     "Product notes and developer guides for identity-based crypto payment resolution.",
 };
@@ -19,7 +19,7 @@ export default function BlogIndexPage() {
             className="text-sm font-semibold text-[#176b46] underline-offset-4 hover:underline"
             href="/"
           >
-            GlobalPayTo
+            MyPayTag
           </Link>
           <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-normal sm:text-5xl">
             Blog
