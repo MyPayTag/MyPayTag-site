@@ -6,6 +6,7 @@ import { useEffect, useEffectEvent, useMemo, useState } from "react";
 
 import { SignedInOnly } from "@/components/cubid/signed-in-only";
 import { useTypedTranslation } from "@/lib/i18n/use-typed-translation";
+import { updatedPreferenceGroup } from "@/lib/portal-preferences";
 import type {
   PortalPreferenceGroup,
   PortalPreferencesResponse,
@@ -349,7 +350,9 @@ async function updatePortalPreferenceGroup(
     body: JSON.stringify(request),
   });
   if (!response.ok) throw new Error(portalErrorMessage(response.status, t));
-  return await response.json() as PortalPreferenceGroup;
+  const updated = updatedPreferenceGroup(await response.json(), group);
+  if (!updated) throw new Error(t("errorGeneric"));
+  return updated;
 }
 
 function portalErrorMessage(status: number, t: SettingsT): string {

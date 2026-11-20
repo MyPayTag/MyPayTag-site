@@ -47,3 +47,18 @@ export interface PortalPreferencesUpdateRequest {
 export type PortalPreferencesState =
   | { status: "ready"; data: PortalPreferencesResponse }
   | { status: "unauthorized" | "unavailable" | "invalid_request" };
+
+// The deployed PUT returns a group; the public contract also permits the full read envelope.
+export function updatedPreferenceGroup(
+  payload: unknown,
+  expected: PortalPreferenceGroup,
+): PortalPreferenceGroup | undefined {
+  if (!payload || typeof payload !== "object") return undefined;
+  const candidate = payload as Partial<PortalPreferencesResponse & PortalPreferenceGroup>;
+  const groups = Array.isArray(candidate.groups) ? candidate.groups : [candidate];
+  return groups.find((group): group is PortalPreferenceGroup =>
+    group.paytagRef === expected.paytagRef && group.chain === expected.chain &&
+    group.network === expected.network && group.asset === expected.asset &&
+    group.payingDapp?.id === expected.payingDapp?.id && Array.isArray(group.routes)
+  );
+}
