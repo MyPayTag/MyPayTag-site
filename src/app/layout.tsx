@@ -41,7 +41,7 @@ export default async function RootLayout({
         <I18nProvider initialLocale={initialLocale}>
           <AppAuthProvider>
             <SiteHeader />
-            {children}
+            <div id="page-content" tabIndex={-1}>{children}</div>
           </AppAuthProvider>
         </I18nProvider>
       </body>
