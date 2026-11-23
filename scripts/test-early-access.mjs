@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { handleEarlyAccessSignup } from "../src/lib/early-access-server.ts";
+import { handleEarlyAccessSignup, waitlistBaseUrl } from "../src/lib/early-access-server.ts";
 const valid = { email: " Reader@Example.COM ", audience: "user", locale: "sv", consent: true, website: "" };
 const request = (body, origin = "https://mypaytag.example") => new Request("https://mypaytag.example/api/early-access", { method: "POST", headers: { origin, "content-type": "application/json", "x-real-ip": "192.0.2.1" }, body: JSON.stringify(body) });
 const options = { baseUrl: "https://backend.example", token: "test-only-waitlist-token-with-32-characters" };
@@ -30,4 +30,10 @@ test("upstream rate/error data is reduced to a private-safe generic response", a
 test("same-origin survives a framework internal URL while Host remains public", async () => {
   const req = new Request("http://localhost:3074/api/early-access",{method:"POST",headers:{host:"127.0.0.1:3074",origin:"http://127.0.0.1:3074","content-type":"application/json"},body:JSON.stringify(valid)});
   assert.equal((await handleEarlyAccessSignup(req,{})).status,503);
+});
+
+test("optional waitlist URL uses resolver fallback for blank environment values", () => {
+  for (const value of [undefined, "", "   "]) assert.equal(waitlistBaseUrl(value, "https://resolver.example"), "https://resolver.example");
+  assert.equal(waitlistBaseUrl(" https://waitlist.example ", "https://resolver.example"), "https://waitlist.example");
+  assert.equal(waitlistBaseUrl("", ""), undefined);
 });

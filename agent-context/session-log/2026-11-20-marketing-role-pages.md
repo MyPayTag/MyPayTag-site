@@ -12,3 +12,6 @@
 
 ## 2026-11-23 authorized delivery
 Noak requested landing/deployment and hosted signup persistence. Add separate server-only waitlist base URL so marketing publication can use the selected dedicated MyPayTag Supabase target without enabling production portal/payment resolver configuration. Existing staging resolver fallback retained. Final checks and hosted evidence follow.
+
+### PR21 review repairs
+Automatic Codex review found the missing authenticated sign-out control and empty optional URL defeating the documented resolver fallback. Restored the existing session control inside the reachable account menu; normalized optional URL selection and added a behavioral regression for blank/whitespace/override/no-config cases. No new login ceremony. Review is not re-requested after repairs.

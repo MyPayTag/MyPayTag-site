@@ -1,5 +1,9 @@
 import { createHmac } from "node:crypto";
 
+export function waitlistBaseUrl(waitlist?: string, resolver?: string): string | undefined {
+  return waitlist?.trim() || resolver?.trim() || undefined;
+}
+
 interface WaitlistOptions { baseUrl?: string; token?: string; fetcher?: typeof fetch }
 const reply = (status: number) => Response.json({ status: status === 202 ? "accepted" : status === 429 ? "rate_limited" : "unavailable" }, { status, headers: { "cache-control": "no-store", ...(status === 429 ? { "retry-after": "900" } : {}) } });
 

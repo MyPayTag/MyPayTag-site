@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { CubidSessionControl } from "@/components/cubid/session-control";
 import { ChevronDown, ArrowUpRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { HeaderLocaleSwitcher } from "@/components/i18n/header-locale-switcher";
@@ -23,7 +24,7 @@ export function SiteHeader() {
         </details>
         <Link className="mpt-nav-secondary" href="/api-docs">{t("docs")}</Link>
         <Link className="mpt-nav-secondary" href="/blog">{nav("blog")}</Link>
-        <details className="mpt-nav-dropdown mpt-account-dropdown" onKeyDown={(event) => { if (event.key === "Escape") event.currentTarget.removeAttribute("open"); }}><summary>{t("account")}<ChevronDown size={14} aria-hidden="true" /></summary><div className="mpt-account-menu">{([['/settings', 'settings'], ['/history', 'history'], ['/enter-paytag', 'enterPaytag'], ['/developer', 'developer'], ['/api-playground', 'playground']] as const).map(([href,key]) => <Link href={href} onClick={close} key={href}>{nav(key)}</Link>)}</div></details>
+        <details className="mpt-nav-dropdown mpt-account-dropdown" onKeyDown={(event) => { if (event.key === "Escape") event.currentTarget.removeAttribute("open"); }}><summary>{t("account")}<ChevronDown size={14} aria-hidden="true" /></summary><div className="mpt-account-menu">{([['/settings', 'settings'], ['/history', 'history'], ['/enter-paytag', 'enterPaytag'], ['/developer', 'developer'], ['/api-playground', 'playground']] as const).map(([href,key]) => <Link href={href} onClick={close} key={href}>{nav(key)}</Link>)}<div className="mpt-account-session"><CubidSessionControl /></div></div></details>
       </nav>
       <div className="mpt-header-actions">
 

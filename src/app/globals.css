@@ -273,3 +273,5 @@ select {
 @media (max-width:700px) { .mpt-header-actions { gap: 8px; } .mpt-header-cta { padding: 10px; white-space: nowrap; } .mpt-header-cta svg { display: none; } .mpt-header-actions > label { min-width: 32px; gap: 3px; padding: 0; } .mpt-header-actions > label svg:first-child { width: 20px; } .mpt-header-actions > label svg:nth-child(2) { width: 10px; } .mpt-marketing section[id] { scroll-margin-top: 112px; } }
 
 @media (max-width:700px) { .mpt-header-inner { display: grid; grid-template-columns: 1fr auto; column-gap: 10px; } .mpt-main-nav { grid-column: 1 / -1; width: 100%; margin-top: 10px; } .mpt-header-actions { grid-column: 2; grid-row: 1; } }
+
+.mpt-account-session { border-top: 1px solid #19392d20; padding: 14px 0 4px; }
