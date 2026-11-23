@@ -27,3 +27,6 @@ Locally vendored Unsplash photographs at 2560px, used as decorative backgrounds 
 
 ## Scope
 Implements the user's four-pass brief under site#15/#16/#17. No deployment, production configuration, authentication ceremony, wallet interaction or payment. Content describes the target experience as requested; avoid fabricated partners, adoption or universal guarantees.
+
+## Production boundary
+Set server-only `MYPAYTAG_WAITLIST_BASE_URL` for marketing collection independently from the payment resolver. It falls back to the existing resolver URL for staging compatibility. Enabling the production waitlist does not configure production portal/resolver access or launch the payment service.

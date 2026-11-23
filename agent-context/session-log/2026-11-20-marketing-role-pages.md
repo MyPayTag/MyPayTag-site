@@ -9,3 +9,6 @@
 - fixes during validation: match browser Origin against public Host when Next uses an internal route URL; regression added. Prevent LastPass DOM injection in signup field through ignore attributes. Pause only background images so entry content cannot be frozen invisible.
 - evidence: /Volumes/MiniBot/scratch/mypaytag-marketing-evidence-20261120/home-desktop.jpg. Local production preview http://127.0.0.1:3074/ .
 - follow-ups: independent acceptance/review; backend#46 migration/function and private shared token configuration on the explicitly selected target, then hosted end-to-end signup readback under site#18. No push, merge or hosted deployment in this task. Preserve existing translation and PR branches. Waitlist currently returns503 without configuration, never fake success.
+
+## 2026-11-23 authorized delivery
+Noak requested landing/deployment and hosted signup persistence. Add separate server-only waitlist base URL so marketing publication can use the selected dedicated MyPayTag Supabase target without enabling production portal/payment resolver configuration. Existing staging resolver fallback retained. Final checks and hosted evidence follow.
